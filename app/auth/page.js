@@ -125,7 +125,6 @@ export default function Auth() {
 					<span
 						onClick={switchTab}
 						className="font-semibold text-blue-800 hover:cursor-pointer uppercase"
-						href="/"
 					>
 						{isLogin ? "Sign Up" : "Log In"}
 					</span>
