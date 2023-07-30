@@ -12,7 +12,7 @@ export const loginForm = {
 	},
 	password: {
 		name: "password",
-		type: "text",
+		type: "password",
 		label: "Password",
 		required: true,
 		placeholder: "Enter your password",

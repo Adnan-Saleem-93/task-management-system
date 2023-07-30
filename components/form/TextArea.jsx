@@ -1,6 +1,6 @@
 import React from "react";
 
-const TextField = ({
+const TextArea = ({
 	index,
 	name,
 	value,
@@ -10,17 +10,19 @@ const TextField = ({
 	...rest
 }) => {
 	return (
-		<input
+		<textarea
 			{...rest}
 			type={type}
 			placeholder={placeholder}
-			value={value}
+			rows={5}
 			autoFocus={index === 0 ? true : false}
 			className={`mb-4 input--field ${
 				!error ? "border border-slate-400" : "border-2 border-red-600"
 			} ${!error ? "focus:ring-sky-600" : "focus:ring-red-500"}`}
-		/>
+		>
+			{value}
+		</textarea>
 	);
 };
 
-export default TextField;
+export default TextArea;

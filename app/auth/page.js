@@ -6,18 +6,22 @@ import {
 	signupForm,
 	signupDefaultValues,
 	signupValidations,
-} from "./signup-schema.js";
+} from "./schema/signup.js";
 import {
 	loginForm,
 	loginDefaultValues,
 	loginValidations,
-} from "./login-schema.js";
+} from "./schema/login.js";
 import { Fragment, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TextField from "@/components/form/TextField";
 import Select from "@/components/form/Select";
+import { useRouter } from "next/navigation";
+import Header from "@/components/Header.jsx";
 
 export default function Auth() {
+	const router = useRouter();
+
 	const [isLogin, setIsLogin] = useState(true);
 	const {
 		handleSubmit,
@@ -38,16 +42,19 @@ export default function Auth() {
 		setIsLogin(!isLogin);
 	};
 
-	const onSubmit = (values) => console.log(values);
+	const onSubmit = (values) => {
+		try {
+			router.push("/tasks");
+			// useNavigation
+		} catch (error) {}
+	};
 
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
 			className="flex flex-col items-center h-screen justify-center lg:w-[50vw] md:w-[60vw] sm:w-[80vw] w-[90vw] m-auto text-center"
 		>
-			<h1 className="text-5xl font-extrabold text-blue-500 mb-8 tracking-widest">
-				Task Management System
-			</h1>
+			<Header />
 			<div className="border border-slate-400 bg-slate-200 rounded-lg w-full flex flex-col text-left p-12">
 				<h2 className="text-center text-4xl font-bold -mt-4 mb-4">
 					{isLogin ? "Log In" : "Create Account"}
@@ -84,7 +91,7 @@ export default function Auth() {
 								control={control}
 								defaultValue={value}
 								render={({ field }) => {
-									return type === "text" ? (
+									return ["text", "password"].includes(type) ? (
 										<TextField
 											name={name}
 											type={type}
@@ -112,10 +119,7 @@ export default function Auth() {
 					);
 				})}
 
-				<button
-					type="submit"
-					className="bg-blue-500 text-white rounded p-2 cursor-pointer hover:bg-blue-700 uppercase"
-				>
+				<button type="submit" className="primary--button">
 					{isLogin ? "Log In" : "Sign Up"}
 				</button>
 			</div>
@@ -124,7 +128,7 @@ export default function Auth() {
 					{isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
 					<span
 						onClick={switchTab}
-						className="font-semibold text-blue-800 hover:cursor-pointer uppercase"
+						className="font-semibold text-blue-800 hover:cursor-pointer hover:text-blue-900 hover:tracking-widest duration-300 uppercase"
 					>
 						{isLogin ? "Sign Up" : "Log In"}
 					</span>

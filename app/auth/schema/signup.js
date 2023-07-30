@@ -12,7 +12,7 @@ export const signupForm = {
 	},
 	password: {
 		name: "password",
-		type: "text",
+		type: "password",
 		label: "Password",
 		required: true,
 		placeholder: "Enter your password",
@@ -21,7 +21,7 @@ export const signupForm = {
 	},
 	confirm_password: {
 		name: "confirm_password",
-		type: "text",
+		type: "password",
 		label: "Confirm Password",
 		required: true,
 		placeholder: "Enter Password Again",

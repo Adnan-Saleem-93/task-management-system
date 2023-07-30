@@ -20,3 +20,21 @@ body {
 	color: rgb(var(--background-end-rgb));
 	background: var(--foreground-rgb);
 }
+
+@layer components {
+	.table--row {
+		@apply px-4 py-2 rounded-md border border-slate-300;
+	}
+
+	.input--field {
+		@apply rounded p-2 focus:outline-none focus:ring;
+	}
+
+	.primary--button {
+		@apply bg-blue-500 text-white rounded p-2 cursor-pointer hover:bg-blue-700 uppercase;
+	}
+
+	.delete--button {
+		@apply text-red-500 flex items-center justify-evenly border border-red-500 bg-white hover:text-white hover:bg-red-500 rounded-md px-4 py-2 w-full duration-300;
+	}
+}
